@@ -2,7 +2,7 @@
 ![Compatible with: Camunda Platform 8](https://img.shields.io/badge/Compatible%20with-Camunda%20Platform%208-0072Ce)
 [![](https://img.shields.io/badge/Lifecycle-Incubating-blue)](https://github.com/Camunda-Community-Hub/community/blob/main/extension-lifecycle.md#incubating-)
 
-# An example to show how to migrate active proces instances from a cluster to another
+# An example to show how to migrate active process instances from a cluster to another
 
 Many customers are moving from Self-Managed Camunda 8 clusters to Camunda cloud. A recurring question is how to migrate our running instances to the cloud. The purpose of this project is to show, in a simple manner, how that could be achieved.
 
