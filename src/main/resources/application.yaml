@@ -1,0 +1,39 @@
+# https://github.com/camunda-community-hub/spring-zeebe#configuring-camunda-platform-8-saas-connection
+# https://github.com/camunda-community-hub/spring-zeebe#additional-configuration-options
+
+#the target
+zeebe.client:
+  cloud:
+    region: bru-2
+    clusterId: ***
+    clientId: ***
+    clientSecret: ***
+    
+#the source    
+operate:
+  cloud:
+    region: bru-2
+    clusterId: ***
+    clientId: ***
+    clientSecret: ***
+    
+#operate:
+#  selfmanaged:
+#    url: http://localhost:8081
+#    clientId: pouet
+#    clientSecret: CSf4Jqwcmw6HsEocpslOvVPjZ4t8DUoP
+#    keycloakUrl: http://localhost:18080
+
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1048576
+
+logging:
+  level:
+    root: INFO
