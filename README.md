@@ -8,7 +8,9 @@ Many customers are moving from Self-Managed Camunda 8 clusters to Camunda cloud.
 
 The idea is simply to read active process instances from the source operate and start a new instance in the target zeebe cluster, starting at the current active task. If the process instance has multiple active tasks, all the tasks will be activated in the target instance. the target instance will also have a new variable doing a reference to the source process instance. The migration will ensure to start the new process instance with the same definition as the source.
 
-This project is kind of "naive" and it may be more difficult in real life, especially if your main process instances are active on a call activity. This project would activate the call activity from the beginning and not from its current state.
+:information_source: In case the process instance is active on call activities, the tool will add a "migrate" catch event right after the "start event". This migrate catch event is associated with a [worker]((src/main/java/org/example/camunda/worker/MigrationWorker.java) that will restore the original activated elements of the sub process and will cancel itself. 
+
+:information_source: This project is kind of "naive" and it may be more difficult in real life, especially if your process instances use sequential or parallel expanded subprocesses.
 
 ## Repository content
 

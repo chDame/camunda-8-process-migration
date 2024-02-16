@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.example.camunda.dto.CustomProcessInstanceFilter;
 import org.example.camunda.utils.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -179,5 +180,20 @@ public class OperateService {
     }
 
     return result;
+  }
+
+  public ProcessInstance getSubProcessInstance(Long parentInstanceKey, Long parentFlowNodeKey)
+      throws OperateException {
+    List<ProcessInstance> instances =
+        getCamundaOperateClient()
+            .searchProcessInstances(
+                new SearchQuery.Builder()
+                    .filter(new CustomProcessInstanceFilter(parentInstanceKey, parentFlowNodeKey))
+                    .size(1)
+                    .build());
+    if (instances.isEmpty()) {
+      return null;
+    }
+    return instances.get(0);
   }
 }
