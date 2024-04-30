@@ -2,15 +2,13 @@
 ![Compatible with: Camunda Platform 8](https://img.shields.io/badge/Compatible%20with-Camunda%20Platform%208-0072Ce)
 [![](https://img.shields.io/badge/Lifecycle-Incubating-blue)](https://github.com/Camunda-Community-Hub/community/blob/main/extension-lifecycle.md#incubating-)
 
-# An example to show how to migrate active process instances from a cluster to another
+# An example to show how to migrate active process instances from a version to lastest
 
-Many customers are moving from Self-Managed Camunda 8 clusters to Camunda cloud. A recurring question is how to migrate our running instances to the cloud. The purpose of this project is to show, in a simple manner, how that could be achieved.
+A draft to show how to migrate version with call activities (until the Operate migration tool allows it)
 
-The idea is simply to read active process instances from the source operate and start a new instance in the target zeebe cluster, starting at the current active task. If the process instance has multiple active tasks, all the tasks will be activated in the target instance. the target instance will also have a new variable doing a reference to the source process instance. The migration will ensure to start the new process instance with the same definition as the source.
+:information_source: In case the process instance is active on call activities, the tool will add a "migrate" catch event right after the "start event". This migrate catch event is associated with a [worker]((src/main/java/org/example/camunda/worker/MigrationWorker.java) that will restore sub process in the desired state. 
 
-:information_source: In case the process instance is active on call activities, the tool will add a "migrate" catch event right after the "start event". This migrate catch event is associated with a [worker]((src/main/java/org/example/camunda/worker/MigrationWorker.java) that will restore the original activated elements of the sub process and will cancel itself. 
-
-:information_source: This project is kind of "naive" and it may be more difficult in real life, especially if your process instances use sequential or parallel expanded subprocesses.
+:information_source: This project is kind of "naive" and it may be more difficult in real life, especially if your process instances use parallel expanded subprocesses.
 
 ## Repository content
 
